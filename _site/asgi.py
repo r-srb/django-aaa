@@ -13,4 +13,21 @@ from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', '_site.settings')
 
-application = get_asgi_application()
+# application = get_asgi_application()
+
+# Custom code start here
+
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
+import powershell_terminal.routing
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', '_site.settings')
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(
+            powershell_terminal.routing.websocket_urlpatterns
+        )
+    ),
+})

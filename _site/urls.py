@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('aaa.urls')),  # Zahrnuje URL z aaa
+    path('', include('powershell_terminal.urls')),
 ]

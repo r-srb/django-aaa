@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'aaa',
+    'channels',
+    'powershell_terminal',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +71,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '_site.wsgi.application'
+
+ASGI_APPLICATION = '_site.asgi.application'
 
 
 # Database
