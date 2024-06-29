@@ -4,5 +4,5 @@ from django.contrib import admin
 # from .models import DHCPRole
 # admin.site.register(DHCPRole)
 
-from .models import GroupRoleMapping
-admin.site.register(GroupRoleMapping)
+# from .models import GroupRoleMapping
+# admin.site.register(GroupRoleMapping)

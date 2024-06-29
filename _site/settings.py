@@ -82,7 +82,7 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = [
-    'aaa.backends.CustomAuthBackend',
+    'aaa.backends.AdPwshAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
