@@ -6,10 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
-from django.contrib.auth.models import Group
-from .models import IPSubnet
-import ipaddress
-
 
 # Login pres HTML stranku:
 def login_view(request):
@@ -61,33 +57,37 @@ def logout_view(request):
     # response['WWW-Authenticate'] = 'Basic realm="Login Required"'
     return response
 
-# @login_required
-# def index(request):
-#     return HttpResponse("Hello world!<br><a href='logout/'>Logout<a> " + request.user.username)
-
 @login_required
 def index(request):
-    subnets = ["10.1.0.0/16", "10.2.0.0/16", "10.2.3.0/24"]
-    # Get the user's groups
-    user_groups = request.user.groups.all()
+    return HttpResponse("Hello world!<br><a href='logout/'>Logout<a> " + request.user.username)
 
-    # Get the IPSubnets for the user's groups
-    user_ip_subnets = IPSubnet.objects.filter(group__in=user_groups)
+# from django.contrib.auth.models import Group
+# from .models import IPSubnet
+# import ipaddress
 
-    # Extract the subnets from the user's IPSubnets
-    user_subnet_list = [ipaddress.ip_network(ip_subnet.subnet) for ip_subnet in user_ip_subnets]
+# @login_required
+# def index(request):
+#     subnets = ["10.1.0.0/16", "10.2.0.0/16", "10.2.3.0/24"]
+#     # Get the user's groups
+#     user_groups = request.user.groups.all()
 
-    # Convert predefined subnets to ip_network objects
-    predefined_subnets = [ipaddress.ip_network(subnet) for subnet in subnets]
+#     # Get the IPSubnets for the user's groups
+#     user_ip_subnets = IPSubnet.objects.filter(group__in=user_groups)
 
-    # Find the subnets that are in both the predefined subnets list and the user's subnet list
-    matching_subnets = [str(subnet) for subnet in predefined_subnets if any(subnet.subnet_of(user_subnet) for user_subnet in user_subnet_list)]
+#     # Extract the subnets from the user's IPSubnets
+#     user_subnet_list = [ipaddress.ip_network(ip_subnet.subnet) for ip_subnet in user_ip_subnets]
 
-    # Prepare the response
-    response = "Hello in " + ", ".join(matching_subnets) + " world!<br>"
-    response += f"<a href='logout/'>Logout</a> {request.user.username}"
+#     # Convert predefined subnets to ip_network objects
+#     predefined_subnets = [ipaddress.ip_network(subnet) for subnet in subnets]
 
-    return HttpResponse(response)
+#     # Find the subnets that are in both the predefined subnets list and the user's subnet list
+#     matching_subnets = [str(subnet) for subnet in predefined_subnets if any(subnet.subnet_of(user_subnet) for user_subnet in user_subnet_list)]
+
+#     # Prepare the response
+#     response = "Hello in " + ", ".join(matching_subnets) + " world!<br>"
+#     response += f"<a href='logout/'>Logout</a> {request.user.username}"
+
+#     return HttpResponse(response)
 
 # from django.contrib.auth.models import Group
 # from aaa.models import IPSubnet
