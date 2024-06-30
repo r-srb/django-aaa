@@ -33,23 +33,26 @@ def index(request):
 
     return HttpResponse(response)
 
-# from django.contrib.auth.models import Group
-# from aaa.models import ScopePerm
+@login_required
+def init(request):
+    from django.contrib.auth.models import Group
+    from .models import ScopePerm
 
-# group, created = Group.objects.get_or_create(name="AD:GL-SG-NetGlobalAdmins")
-# ScopePerm.objects.create(group=group, subnet="0.0.0.0/0")
-# group, created = Group.objects.get_or_create(name="AD:PL-SG-InfraAdmins")
-# ScopePerm.objects.create(group=group, subnet="10.16.0.0/12")
-# group, created = Group.objects.get_or_create(name="AD:CZ-SG-InfraAdmins")
-# ScopePerm.objects.create(group=group, subnet="10.32.0.0/12")
-# group, created = Group.objects.get_or_create(name="AD:RS-SG-InfraAdmins")
-# ScopePerm.objects.create(group=group, subnet="10.48.0.0/12")
-# group, created = Group.objects.get_or_create(name="AD:IT-SG-InfraAdmins")
-# ScopePerm.objects.create(group=group, subnet="10.64.0.0/12")
-# group, created = Group.objects.get_or_create(name="AD:RO-SG-InfraAdmins")
-# ScopePerm.objects.create(group=group, subnet="10.96.0.0/12")
-# group, created = Group.objects.get_or_create(name="AD:SK-SG-InfraAdmins")
-# ScopePerm.objects.create(group=group, subnet="10.112.0.0/12")
+    group, created = Group.objects.get_or_create(name="AD:GL-SG-NetGlobalAdmins")
+    ScopePerm.objects.create(group=group, subnet="0.0.0.0/0")
+    group, created = Group.objects.get_or_create(name="AD:PL-SG-InfraAdmins")
+    ScopePerm.objects.create(group=group, subnet="10.16.0.0/12")
+    group, created = Group.objects.get_or_create(name="AD:CZ-SG-InfraAdmins")
+    ScopePerm.objects.create(group=group, subnet="10.32.0.0/12")
+    group, created = Group.objects.get_or_create(name="AD:RS-SG-InfraAdmins")
+    ScopePerm.objects.create(group=group, subnet="10.48.0.0/12")
+    group, created = Group.objects.get_or_create(name="AD:IT-SG-InfraAdmins")
+    ScopePerm.objects.create(group=group, subnet="10.64.0.0/12")
+    group, created = Group.objects.get_or_create(name="AD:RO-SG-InfraAdmins")
+    ScopePerm.objects.create(group=group, subnet="10.96.0.0/12")
+    group, created = Group.objects.get_or_create(name="AD:SK-SG-InfraAdmins")
+    ScopePerm.objects.create(group=group, subnet="10.112.0.0/12")
+    return HttpResponse('Init Groups')
 
 # Generator:
 # while read gr ip; do
