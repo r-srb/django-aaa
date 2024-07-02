@@ -29,7 +29,7 @@ def index(request):
 
     # Prepare the response
     response = "Hello in " + ", ".join(matching_subnets) + " world!<br>"
-    response += f"<a href='logout/'>Logout</a> {request.user.username}"
+    response += f"<a href='/logout/'>Logout</a> {request.user.username}"
 
     return HttpResponse(response)
 
